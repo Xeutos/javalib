@@ -24,7 +24,7 @@ jobs:
           mvn versions:set -DnewVersion=${CLEAN_VERSION} -DgenerateBackupPoms=false
       - name: Publish with Maven
         run: mvn -B deploy
-        env: GITHUB_TOKEN ${{ secrets.GITHUB_TOKEN }}
-
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
