@@ -26,4 +26,11 @@
             <version>3.27.6</version>
         </dependency>
     </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>Github OWNER Apache Maven Packages</name>
+            <url>https://github.com/Xeutos/javalib.git</url>
+        </repository>
+    </distributionManagement>
 </project>
