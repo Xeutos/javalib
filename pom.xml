@@ -6,7 +6,7 @@
 
     <groupId>org.example</groupId>
     <artifactId>gitdemo</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>
@@ -26,11 +26,12 @@
             <version>3.27.6</version>
         </dependency>
     </dependencies>
+
     <distributionManagement>
         <repository>
             <id>github</id>
             <name>Github OWNER Apache Maven Packages</name>
-            <url>https://github.com/Xeutos/javalib.git</url>
+            <url>https://maven.pkg.github.com/Xeutos/javalib</url>
         </repository>
     </distributionManagement>
 </project>
