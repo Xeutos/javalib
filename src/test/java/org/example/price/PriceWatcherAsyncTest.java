@@ -10,6 +10,9 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.concurrent.TimeUnit;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 @ExtendWith(MockitoExtension.class)
 public class PriceWatcherAsyncTest {
@@ -34,5 +37,16 @@ public class PriceWatcherAsyncTest {
                 .pollDelay(500, TimeUnit.MILLISECONDS)
                 .pollInterval(100, TimeUnit.MILLISECONDS)
                 .until(notificationService::isSent);
+    }
+
+    @Test
+    void throwsExceptionWhenPriceServiceIsUnavailable() {
+        Mockito.when(priceService.getPrice("T-Shirt"))
+                .thenThrow(new RuntimeException("Service Unavailable"));
+
+        var exception = assertThrows(RuntimeException.class,
+                () -> priceWatcher.checkPrices());
+
+        assertThat(exception).hasMessage("Error when checking prices");
     }
 }

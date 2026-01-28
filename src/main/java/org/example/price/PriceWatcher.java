@@ -11,8 +11,12 @@ public class PriceWatcher {
     }
 
     public void checkPrices() {
-        var price = priceService.getPrice("T-Shirt");
-        if (price < 100)
-            notificationService.notify("T-Shirt", price);
+        try {
+            var price = priceService.getPrice("T-Shirt");
+            if (price < 100)
+                notificationService.notify("T-Shirt", price);
+        } catch (Exception e) {
+            throw new RuntimeException("Error when checking prices");
+        }
     }
 }
