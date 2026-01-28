@@ -1,4 +1,4 @@
-package org.example;
+package org.example.bowling;
 
 public class Bowling {
     private int[] rolls = new int[21];
