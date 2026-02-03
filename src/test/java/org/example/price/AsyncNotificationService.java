@@ -1,6 +1,6 @@
 package org.example.price;
 
-public class AsyncNotificationService implements NotificationService{
+public class AsyncNotificationService implements NotificationService {
     private boolean isSent = false;
 
     @Override

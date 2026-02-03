@@ -8,14 +8,14 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
-public class PriceWatcherAsyncTest {
+class PriceWatcherAsyncTest {
 
     @Mock
     PriceService priceService;
@@ -27,25 +27,20 @@ public class PriceWatcherAsyncTest {
     PriceWatcher priceWatcher;
 
     @Test
-    void sendNotificationWhenPriceIsLowerThanThreshold(){
-        Mockito.when(priceService.getPrice("T-Shirt"))
-                .thenReturn(95);
+    void sendNotificationWhenPriceIsLowerThanThreshold() {
+        Mockito.when(priceService.getPrice("T-Shirt")).thenReturn(95);
 
         priceWatcher.checkPrices();
 
-        Awaitility.await().atMost(5, TimeUnit.SECONDS)
-                .pollDelay(500, TimeUnit.MILLISECONDS)
-                .pollInterval(100, TimeUnit.MILLISECONDS)
-                .until(notificationService::isSent);
+        Awaitility.await().atMost(5, TimeUnit.SECONDS).pollDelay(500, TimeUnit.MILLISECONDS)
+                .pollInterval(100, TimeUnit.MILLISECONDS).until(notificationService::isSent);
     }
 
     @Test
     void throwsExceptionWhenPriceServiceIsUnavailable() {
-        Mockito.when(priceService.getPrice("T-Shirt"))
-                .thenThrow(new RuntimeException("Service Unavailable"));
+        Mockito.when(priceService.getPrice("T-Shirt")).thenThrow(new RuntimeException("Service Unavailable"));
 
-        var exception = assertThrows(RuntimeException.class,
-                () -> priceWatcher.checkPrices());
+        var exception = assertThrows(RuntimeException.class, () -> priceWatcher.checkPrices());
 
         assertThat(exception).hasMessage("Error when checking prices");
     }

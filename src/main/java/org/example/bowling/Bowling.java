@@ -4,7 +4,7 @@ public class Bowling {
     private int[] rolls = new int[21];
     private int rollCount = 0;
 
-    public void roll(int pins){
+    public void roll(int pins) {
         rolls[rollCount++] = pins;
         if (pins == 10 && isNotFinalFrame()) {
             rollCount++;
@@ -17,14 +17,13 @@ public class Bowling {
 
     public int score() {
         int score = 0;
-        for (int i = 0; i < 20; i+=2) {
+        for (int i = 0; i < 20; i += 2) {
             if (isStrike(i))
                 score += rolls[i] + strikeBonus(i);
             else if (isSpare(i)) {
-                score += rolls[i] + rolls[i+1] + spareBonus(i + 2);
-            }
-            else {
-                score += rolls[i] + rolls[i+1];
+                score += rolls[i] + rolls[i + 1] + spareBonus(i + 2);
+            } else {
+                score += rolls[i] + rolls[i + 1];
             }
         }
         return score;
@@ -39,10 +38,10 @@ public class Bowling {
             return rolls[i + 2] + rolls[i + 3];
         if (i == 18)
             return rolls[i + 1] + rolls[i + 2];
-        if (rolls[i+2] == 10 )
-            return rolls[i+2] + rolls[i+4];
+        if (rolls[i + 2] == 10)
+            return rolls[i + 2] + rolls[i + 4];
 
-        return rolls [i + 2] + rolls[i + 3];
+        return rolls[i + 2] + rolls[i + 3];
     }
 
     private boolean isStrike(int i) {
@@ -50,6 +49,6 @@ public class Bowling {
     }
 
     private boolean isSpare(int i) {
-        return rolls[i] + rolls[i +1] == 10;
+        return rolls[i] + rolls[i + 1] == 10;
     }
 }

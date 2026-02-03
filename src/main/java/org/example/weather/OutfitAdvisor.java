@@ -16,7 +16,7 @@ public class OutfitAdvisor {
             if (temp > 15)
                 return "T-Shirt";
             return null;
-        } catch (IllegalStateException e) {
+        } catch (IllegalStateException _) {
             return "Jeans and Jacket";
         }
     }

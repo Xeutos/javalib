@@ -27,6 +27,6 @@ class CalculatorTest {
     @Test
     void noParametersReturnsZero() {
         int result = Calculator.add();
-        assertThat(result).isEqualTo(0);
+        assertThat(result).isZero();
     }
 }

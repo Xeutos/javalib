@@ -4,17 +4,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class BowlingTest {
+class BowlingTest {
 
     @Test
     void gutterGameGiveScoreZero() {
         Bowling bowlingGame = new Bowling();
 
-        for (int i = 0; i < 20 ; i++) {
+        for (int i = 0; i < 20; i++) {
             bowlingGame.roll(0);
         }
 
-        assertThat(bowlingGame.score()).isEqualTo(0);
+        assertThat(bowlingGame.score()).isZero();
     }
 
     @Test
@@ -29,7 +29,7 @@ public class BowlingTest {
     }
 
     @Test
-    void oneSpareGivesScoreTwentyNine(){
+    void oneSpareGivesScoreTwentyNine() {
         Bowling bowlingGame = new Bowling();
         bowlingGame.roll(5);
         bowlingGame.roll(5);
@@ -65,7 +65,7 @@ public class BowlingTest {
     }
 
     @Test
-    void normalGame(){
+    void normalGame() {
         Bowling bowlingGame = new Bowling();
         bowlingGame.roll(10);
         bowlingGame.roll(3);
@@ -89,7 +89,7 @@ public class BowlingTest {
         assertThat(bowlingGame.score()).isEqualTo(116);
     }
     @Test
-    void normalGame2(){
+    void normalGame2() {
         Bowling bowlingGame = new Bowling();
         bowlingGame.roll(10);
         bowlingGame.roll(3);

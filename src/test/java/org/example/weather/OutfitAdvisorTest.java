@@ -10,7 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @ExtendWith(MockitoExtension.class)
-public class OutfitAdvisorTest {
+class OutfitAdvisorTest {
 
     @Mock
     WeatherService weatherService;
@@ -19,25 +19,23 @@ public class OutfitAdvisorTest {
     OutfitAdvisor advisor;
 
     @Test
-    void freezingTemps(){
+    void freezingTemps() {
         Mockito.when(weatherService.getTemperature()).thenReturn((float) -5.0);
         String advice = advisor.getClothingAdvice();
         assertThat(advice).isEqualTo("Vinterjacka");
     }
 
     @Test
-    void summerTemps(){
+    void summerTemps() {
         Mockito.when(weatherService.getTemperature()).thenReturn((float) 16.0);
         String advice = advisor.getClothingAdvice();
         assertThat(advice).isEqualTo("T-Shirt");
     }
 
     @Test
-    void defaultAdviceWhenNoTempData(){
-        Mockito.when(weatherService.getTemperature())
-                .thenThrow(new IllegalStateException());
+    void defaultAdviceWhenNoTempData() {
+        Mockito.when(weatherService.getTemperature()).thenThrow(new IllegalStateException());
 
-        assertThat(advisor.getClothingAdvice())
-                .isEqualTo("Jeans and Jacket");
+        assertThat(advisor.getClothingAdvice()).isEqualTo("Jeans and Jacket");
     }
 }
