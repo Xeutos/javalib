@@ -16,3 +16,5 @@ jobs:
           cache: 'maven'
       - name: Compile and run tests
         run: ./mvnw -B test
+      - name: Run spotless
+        run: ./mvnw -B spotless:check
